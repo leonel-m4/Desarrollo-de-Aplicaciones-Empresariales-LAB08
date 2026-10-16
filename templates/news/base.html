@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Noticias — Nexo{% endblock %}
+
+{% block extra_head %}
+    {{ block.super }}
+    <meta name="description" content="Tecnología, cultura y ciudades. Las noticias de Nexo.">
+{% endblock %}
+
+{% block breadcrumbs %}{% include 'components/breadcrumbs.html' with current='Noticias' only %}{% endblock %}
+
+{% block content %}
+<div class="news-portal">
+    <nav class="category-nav" aria-label="Secciones de noticias">
+        <a href="{% url 'news:home' %}" {% if request.resolver_match.view_name == 'news:home' %}aria-current="page"{% endif %}>Todas</a>
+        {% for category in categories %}
+            <a href="{% url 'news:category' category.slug %}" {% if selected_category.pk == category.pk %}aria-current="page"{% endif %}>{{ category.name }}</a>
+        {% empty %}
+            <span>Las secciones aparecerán aquí.</span>
+        {% endfor %}
+    </nav>
+    <div class="portal-layout">
+        <div id="contenido-noticias" class="main-content">
+            {% block news_content %}{% endblock %}
+        </div>
+        <aside class="sidebar" aria-label="Barra lateral de noticias">
+            {% block sidebar %}{% include 'news/_sidebar.html' %}{% endblock %}
+        </aside>
+    </div>
+</div>
+{% endblock %}

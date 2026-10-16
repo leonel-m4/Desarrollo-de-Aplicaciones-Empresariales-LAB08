@@ -1,0 +1,9 @@
+<nav class="site-shell breadcrumbs" aria-label="Ruta de navegación">
+    <a href="{% url 'movies:home' %}">Inicio</a>
+    <span aria-hidden="true">/</span>
+    {% if parent_url %}
+        <a href="{{ parent_url }}">{{ parent_label }}</a>
+        <span aria-hidden="true">/</span>
+    {% endif %}
+    <span class="breadcrumb-current" aria-current="page">{{ current }}</span>
+</nav>

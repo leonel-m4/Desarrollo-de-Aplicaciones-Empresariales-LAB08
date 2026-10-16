@@ -1,0 +1,16 @@
+<section class="sidebar-section related-section">
+    <h2>Más en esta categoría</h2>
+    <ol class="recent-list">
+        {% for related in related_articles %}
+            <li>
+                <span class="recent-number" aria-hidden="true">0{{ forloop.counter }}</span>
+                <div>
+                    <a href="{% url 'news:detail' related.slug %}">{{ related.title }}</a>
+                    <time datetime="{{ related.published_at|date:'c' }}">{{ related.published_at|date:'d M Y' }}</time>
+                </div>
+            </li>
+        {% empty %}
+            <li><span class="sidebar-copy">Todavía no hay otras publicaciones relacionadas.</span></li>
+        {% endfor %}
+    </ol>
+</section>

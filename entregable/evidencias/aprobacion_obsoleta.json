@@ -1,0 +1,63 @@
+{
+  "recorded_at_utc": "2026-10-15T21:49:35.947047+00:00",
+  "article": {
+    "id": 20,
+    "title": "Reseña: festival de cine andino"
+  },
+  "approval_test": "Replay the pre-insertion hash; do not approve the changed plan.",
+  "original_plan": {
+    "status": "approval_required",
+    "plan": {
+      "action": "delete_comments_of_post",
+      "args": {
+        "post_id": 20
+      },
+      "details": {
+        "affected_comment_ids": [
+          39
+        ]
+      },
+      "plan_hash": "838daacb5fbb"
+    }
+  },
+  "after_insertion_and_old_approval": {
+    "status": "approval_required",
+    "plan": {
+      "action": "delete_comments_of_post",
+      "args": {
+        "post_id": 20
+      },
+      "details": {
+        "affected_comment_ids": [
+          39,
+          47
+        ]
+      },
+      "plan_hash": "8729adce1f16"
+    }
+  },
+  "verification": {
+    "article_comment_ids": [
+      39,
+      47
+    ],
+    "article_comments": 2,
+    "total_comments": 24,
+    "deleted": 0
+  },
+  "after_seed_blog": {
+    "authors": 4,
+    "posts": 15,
+    "comments": 23,
+    "published_posts": 11,
+    "article": {
+      "id": 35,
+      "title": "Reseña: festival de cine andino"
+    },
+    "article_comment_ids": [
+      63
+    ],
+    "first_article_id": 31,
+    "temporary_comment_present": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "recorded_at_utc": "2026-10-15T23:48:01.808640+00:00",
+  "check": 2,
+  "evaluated_query_versions": 2,
+  "source": "team",
+  "question": "q2",
+  "saved_function": "def q2():\n    \"\"\"Los artículos que no tienen categoría asignada.\"\"\"\n    return Post.objects.filter(category=None)\n",
+  "team_file_sha256": "1aea42b0b9d4ff4c22d6c37b6417e5692e026d1b63495afcbc5ae03ff5a135af",
+  "status": "ok",
+  "queries": 1,
+  "detail": "",
+  "expected": [
+    "Entrevista a una desarrolladora",
+    "Notas sobre pruebas en Django"
+  ],
+  "actual": [
+    "Entrevista a una desarrolladora",
+    "Notas sobre pruebas en Django"
+  ],
+  "sql": [
+    "SELECT \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\" FROM \"blog_post\" WHERE \"blog_post\".\"category_id\" IS NULL"
+  ],
+  "context": "After the first failed attempt, the assistant supplied the category=None example in the conversation. The student saved this second query version. The assistant records its result without modifying team.py."
+}

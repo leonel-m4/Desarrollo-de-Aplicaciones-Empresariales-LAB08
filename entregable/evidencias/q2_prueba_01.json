@@ -1,0 +1,33 @@
+{
+  "recorded_at_utc": "2026-10-15T23:40:49.392053+00:00",
+  "check": 1,
+  "evaluated_query_versions": 1,
+  "source": "team",
+  "question": "q2",
+  "saved_function": "def q2():\n    \"\"\"Los artículos que no tienen categoría asignada.\"\"\"\n    return Post.objects.filter(published=True)\n",
+  "team_file_sha256": "f654f9a229af7e70abd75d65ded7ccfa393346e598453c1d32fcb7c8a98b99f7",
+  "status": "wrong",
+  "queries": 1,
+  "detail": "sobran 9 (p. ej. 'El problema de las N+1 consultas')",
+  "expected": [
+    "Entrevista a una desarrolladora",
+    "Notas sobre pruebas en Django"
+  ],
+  "actual": [
+    "El problema de las N+1 consultas",
+    "Entrevista a una desarrolladora",
+    "Final del torneo regional",
+    "Guía de despliegue",
+    "Introducción al ORM de Django",
+    "Managers propios paso a paso",
+    "Notas sobre pruebas en Django",
+    "Opinión: ¿vale la pena aprender SQL?",
+    "Poesía en la ciudad",
+    "QuerySets perezosos",
+    "Reseña: festival de cine andino"
+  ],
+  "sql": [
+    "SELECT \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\" FROM \"blog_post\" WHERE \"blog_post\".\"published\" = 1"
+  ],
+  "context": "The student saved the evaluated query after receiving guidance on filter(), category and None. The assistant records the result without modifying team.py."
+}

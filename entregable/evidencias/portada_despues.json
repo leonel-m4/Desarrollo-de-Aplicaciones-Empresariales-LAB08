@@ -1,0 +1,22 @@
+{
+  "recorded_at_utc": "2026-10-09T21:05:14.870404+00:00",
+  "python": "3.13.5",
+  "django": "6.1",
+  "dataset": {
+    "authors": 4,
+    "posts": 15,
+    "comments": 23,
+    "published_posts": 11
+  },
+  "front_page": {
+    "url": "/blog/",
+    "status": 200,
+    "queries": 2,
+    "separate_author_queries": 0,
+    "tag_queries": 1,
+    "sql": [
+      "SELECT \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\", \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_post\" INNER JOIN \"blog_author\" ON (\"blog_post\".\"author_id\" = \"blog_author\".\"id\") WHERE \"blog_post\".\"published\" = 1 ORDER BY \"blog_post\".\"published_at\" DESC",
+      "SELECT (\"blog_post_tags\".\"post_id\") AS \"_prefetch_related_val_post_id\", \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" IN (7, 5, 11, 8, 10, 4, 3, 9, 2, 1, 6)"
+    ]
+  }
+}

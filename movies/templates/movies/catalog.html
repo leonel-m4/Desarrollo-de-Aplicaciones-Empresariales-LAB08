@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Películas — Nexo{% endblock %}
+{% block breadcrumbs %}{% include 'components/breadcrumbs.html' with current='Películas' only %}{% endblock %}
+
+{% block content %}
+<header class="page-intro">
+    <span class="eyebrow-label">Catálogo de cine</span>
+    <h1>Encuentra tu próxima película.</h1>
+    <p>{{ movie_count }} títulos organizados por género. Las valoraciones te ayudan a descubrir qué ver después.</p>
+</header>
+{% if genres %}
+    <nav class="genre-links" aria-label="Géneros de películas">
+        {% for genre in genres %}<a class="genre-link" href="#categoria-{{ genre.pk }}">{{ genre.name }}</a>{% endfor %}
+    </nav>
+{% endif %}
+<div id="categorias">
+    {% for genre in genres %}
+        <section id="categoria-{{ genre.pk }}" class="catalog-section" aria-labelledby="genre-heading-{{ genre.pk }}">
+            <div class="catalog-section-header"><h2 id="genre-heading-{{ genre.pk }}">{{ genre.name }}</h2><span>{{ genre.catalog_movies|length }} títulos</span></div>
+            <div class="movie-grid">
+                {% for movie in genre.catalog_movies %}
+                    {% include 'components/movie_card.html' with movie=movie only %}
+                {% empty %}
+                    <div class="empty-panel"><h3>Sin películas en este género.</h3><p>Los nuevos títulos aparecerán aquí.</p></div>
+                {% endfor %}
+            </div>
+        </section>
+    {% empty %}
+        <div class="empty-panel"><h2>El catálogo está por llegar.</h2><p>Las películas aparecerán aquí cuando se publiquen.</p></div>
+    {% endfor %}
+</div>
+{% endblock %}

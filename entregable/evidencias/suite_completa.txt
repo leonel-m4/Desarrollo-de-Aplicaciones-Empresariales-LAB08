@@ -1,0 +1,96 @@
+Command: python manage.py test --verbosity 2 --noinput
+Exit code: 0
+
+STDOUT:
+Found 49 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: admin, auth, blog, contenttypes, movies, news, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying blog.0001_initial... OK
+  Applying movies.0001_initial... OK
+  Applying movies.0002_movie_poster_url... OK
+  Applying news.0001_initial... OK
+  Applying news.0002_article_image_credit_article_image_source_url_and_more... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+
+STDERR:
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+test_a_human_approval_of_the_exact_plan_applies_it (blog.tests.test_agent.GateTests.test_a_human_approval_of_the_exact_plan_applies_it) ... ok
+test_a_read_runs_and_comes_back_marked_untrusted (blog.tests.test_agent.GateTests.test_a_read_runs_and_comes_back_marked_untrusted) ... ok
+test_an_approval_for_another_plan_is_worthless (blog.tests.test_agent.GateTests.test_an_approval_for_another_plan_is_worthless) ... ok
+test_arguments_must_fit_exactly (blog.tests.test_agent.GateTests.test_arguments_must_fit_exactly) ... ok
+test_code_is_not_an_intent (blog.tests.test_agent.GateTests.test_code_is_not_an_intent) ... ok
+test_following_the_injection_deletes_nothing (blog.tests.test_agent.GateTests.test_following_the_injection_deletes_nothing)
+A model that obeys the hostile comment asks to delete: it only gets a plan. ... ok
+test_the_approval_dies_if_the_data_changed_after_the_human_looked (blog.tests.test_agent.GateTests.test_the_approval_dies_if_the_data_changed_after_the_human_looked) ... ok
+test_the_command_prints_the_plan_and_applies_nothing (blog.tests.test_agent.GateTests.test_the_command_prints_the_plan_and_applies_nothing) ... ok
+test_unknown_actions_are_denied (blog.tests.test_agent.GateTests.test_unknown_actions_are_denied) ... ok
+test_reference_solutions_are_all_correct_and_cheap (blog.tests.test_duel.DuelTests.test_reference_solutions_are_all_correct_and_cheap) ... skipped 'carpeta teacher/ ausente'
+test_single_question (blog.tests.test_duel.DuelTests.test_single_question) ... ok
+test_team_answers_are_correct_when_provided (blog.tests.test_duel.DuelTests.test_team_answers_are_correct_when_provided) ... ok
+test_the_assistant_fails_where_the_lab_says (blog.tests.test_duel.DuelTests.test_the_assistant_fails_where_the_lab_says) ... ok
+test_front_page_runs_two_queries (blog.tests.test_front_page.FrontPageTests.test_front_page_runs_two_queries) ... ok
+test_front_page_shows_the_published_posts (blog.tests.test_front_page.FrontPageTests.test_front_page_shows_the_published_posts) ... ok
+test_the_reference_solution_is_green (blog.tests.test_front_page.FrontPageTests.test_the_reference_solution_is_green) ... skipped 'carpeta teacher/ ausente'
+test_all_blog_admin_pages_render (blog.tests.test_integration.NexoIntegrationTests.test_all_blog_admin_pages_render) ... ok
+test_blog_content_remains_escaped (blog.tests.test_integration.NexoIntegrationTests.test_blog_content_remains_escaped) ... ok
+test_blog_uses_its_own_route_and_shared_layout (blog.tests.test_integration.NexoIntegrationTests.test_blog_uses_its_own_route_and_shared_layout) ... ok
+test_lab_commands_allow_pending_manual_answers (blog.tests.test_integration.NexoIntegrationTests.test_lab_commands_allow_pending_manual_answers) ... ok
+test_one_admin_lists_all_three_apps (blog.tests.test_integration.NexoIntegrationTests.test_one_admin_lists_all_three_apps) ... ok
+test_other_sections_link_to_the_blog (blog.tests.test_integration.NexoIntegrationTests.test_other_sections_link_to_the_blog) ... ok
+test_resetting_the_blog_preserves_movies_news_and_users (blog.tests.test_integration.NexoIntegrationTests.test_resetting_the_blog_preserves_movies_news_and_users) ... ok
+test_counts_match_the_seed_data (blog.tests.test_seed.SeedTests.test_counts_match_the_seed_data) ... ok
+test_seeding_twice_does_not_duplicate (blog.tests.test_seed.SeedTests.test_seeding_twice_does_not_duplicate) ... ok
+test_the_hostile_comment_is_there (blog.tests.test_seed.SeedTests.test_the_hostile_comment_is_there) ... ok
+test_catalog_keeps_all_movies_and_their_genres (movies.tests.PortalNavigationTests.test_catalog_keeps_all_movies_and_their_genres) ... ok
+test_empty_sections_remain_accessible (movies.tests.PortalNavigationTests.test_empty_sections_remain_accessible) ... ok
+test_home_introduces_both_sections_without_repeating_featured_content (movies.tests.PortalNavigationTests.test_home_introduces_both_sections_without_repeating_featured_content) ... ok
+test_recommendations_are_rated_related_unique_and_ordered (movies.tests.PortalNavigationTests.test_recommendations_are_rated_related_unique_and_ordered) ... ok
+test_all_news_admin_pages_render (news.tests.PortalTests.test_all_news_admin_pages_render) ... ok
+test_author_with_articles_cannot_be_deleted (news.tests.PortalTests.test_author_with_articles_cannot_be_deleted) ... ok
+test_body_is_escaped_and_linebreaks_remain (news.tests.PortalTests.test_body_is_escaped_and_linebreaks_remain) ... ok
+test_category_reuses_card_and_filters_articles (news.tests.PortalTests.test_category_reuses_card_and_filters_articles) ... ok
+test_editing_in_admin_updates_public_page (news.tests.PortalTests.test_editing_in_admin_updates_public_page) ... ok
+test_future_article_is_not_public (news.tests.PortalTests.test_future_article_is_not_public) ... ok
+test_home_empty_state (news.tests.PortalTests.test_home_empty_state) ... ok
+test_home_inherits_base_and_includes_card (news.tests.PortalTests.test_home_inherits_base_and_includes_card) ... ok
+test_missing_article_and_category_return_404 (news.tests.PortalTests.test_missing_article_and_category_return_404) ... ok
+test_related_articles_exclude_current_and_other_categories (news.tests.PortalTests.test_related_articles_exclude_current_and_other_categories) ... ok
+test_source_and_image_credits_are_displayed (news.tests.PortalTests.test_source_and_image_credits_are_displayed) ... ok
+test_stylesheet_is_discoverable (news.tests.PortalTests.test_stylesheet_is_discoverable) ... ok
+test_legacy_examples_are_converted_without_removing_user_content (news.tests.SeedNewsTests.test_legacy_examples_are_converted_without_removing_user_content) ... ok
+test_seed_is_repeatable_preserves_edits_and_creates_images (news.tests.SeedNewsTests.test_seed_is_repeatable_preserves_edits_and_creates_images) ... ok
+test_a_reply_without_json_is_an_error (blog.tests.test_agent.ModelAdapterTests.test_a_reply_without_json_is_an_error) ... ok
+test_ask_model_uses_the_endpoint_and_returns_the_intent (blog.tests.test_agent.ModelAdapterTests.test_ask_model_uses_the_endpoint_and_returns_the_intent) ... ok
+test_it_parses_an_intent_wrapped_in_fences (blog.tests.test_agent.ModelAdapterTests.test_it_parses_an_intent_wrapped_in_fences) ... ok
+test_every_destructive_action_has_a_plan (blog.tests.test_agent.RegistryShapeTests.test_every_destructive_action_has_a_plan) ... ok
+test_there_is_no_generic_escape_hatch (blog.tests.test_agent.RegistryShapeTests.test_there_is_no_generic_escape_hatch) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 3.036s
+
+OK (skipped=2)
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

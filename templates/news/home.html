@@ -1,0 +1,30 @@
+{% extends 'news/base.html' %}
+
+{% block title %}Noticias — Nexo{% endblock %}
+
+{% block news_content %}
+<header class="page-heading">
+    <span class="eyebrow">En contexto</span>
+    <h1>Noticias</h1>
+    <p>Una selección de historias, con sus fuentes originales.</p>
+</header>
+
+<section aria-labelledby="latest-heading">
+    <div class="section-heading">
+        <h2 id="latest-heading">Publicaciones</h2>
+        <span>{{ articles|length }} publicaciones</span>
+    </div>
+    <div class="article-grid">
+        {% for article in articles %}
+            {% include 'news/_article_card.html' with article=article featured=forloop.first only %}
+        {% empty %}
+            <div class="empty-state">
+                <span class="eyebrow">Próxima edición</span>
+                <h2>Todavía no hay noticias.</h2>
+                <p>Las nuevas publicaciones aparecerán aquí.</p>
+                {% if request.user.is_staff %}<a class="button" href="{% url 'admin:news_article_add' %}">Crear una noticia</a>{% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

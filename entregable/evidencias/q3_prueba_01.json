@@ -1,0 +1,38 @@
+{
+  "recorded_at_utc": "2026-10-16T00:01:35.748030+00:00",
+  "check": 1,
+  "evaluated_query_versions": 1,
+  "source": "team",
+  "question": "q3",
+  "saved_function": "def q3():\n    \"\"\"Los artículos publicados entre el 1 de marzo y el 31 de mayo de 2026, ambos días incluidos.\"\"\"\n    return Post.objects.filter(\n        published=True,\n        published_at__range=(date(2026, 3, 1), date(2026, 5, 31)),\n    )\n",
+  "team_file_sha256": "05dc47a7dea8e93a99e60c048f81ae4bf770395c7c1d1482cce92f08f025d1fc",
+  "status": "ok",
+  "queries": 1,
+  "detail": "",
+  "expected": [
+    "El problema de las N+1 consultas",
+    "Entrevista a una desarrolladora",
+    "Guía de despliegue",
+    "Introducción al ORM de Django",
+    "Managers propios paso a paso",
+    "Notas sobre pruebas en Django",
+    "Opinión: ¿vale la pena aprender SQL?",
+    "QuerySets perezosos",
+    "Reseña: festival de cine andino"
+  ],
+  "actual": [
+    "El problema de las N+1 consultas",
+    "Entrevista a una desarrolladora",
+    "Guía de despliegue",
+    "Introducción al ORM de Django",
+    "Managers propios paso a paso",
+    "Notas sobre pruebas en Django",
+    "Opinión: ¿vale la pena aprender SQL?",
+    "QuerySets perezosos",
+    "Reseña: festival de cine andino"
+  ],
+  "sql": [
+    "SELECT \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\" FROM \"blog_post\" WHERE (\"blog_post\".\"published\" = 1 AND \"blog_post\".\"published_at\" BETWEEN '2026-03-01' AND '2026-05-31')"
+  ],
+  "context": "The assistant supplied the published=True and published_at__range example in the conversation. The student saved this first evaluated q3 version. The assistant records its result without modifying team.py."
+}

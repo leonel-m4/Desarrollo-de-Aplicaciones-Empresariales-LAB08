@@ -1,0 +1,30 @@
+{
+  "recorded_at_utc": "2026-10-15T21:48:01.289674+00:00",
+  "article": {
+    "id": 5,
+    "title": "Reseña: festival de cine andino"
+  },
+  "before": {
+    "authors": 4,
+    "posts": 15,
+    "comments": 23,
+    "post_comments": [
+      16
+    ]
+  },
+  "response": {
+    "status": "approval_required",
+    "plan": {
+      "action": "delete_comments_of_post",
+      "args": {
+        "post_id": 5
+      },
+      "details": {
+        "affected_comment_ids": [
+          16
+        ]
+      },
+      "plan_hash": "4d7ffe2c0e99"
+    }
+  }
+}

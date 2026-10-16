@@ -1,0 +1,23 @@
+Command: python manage.py agent --intent {"action": "posts_per_author", "args": {}}
+Exit code: 0
+
+STDOUT:
+{
+  "status": "ok",
+  "untrusted_data": [
+    {
+      "author": "Beto Salas",
+      "total": 6
+    },
+    {
+      "author": "Ana Quispe",
+      "total": 6
+    },
+    {
+      "author": "Carla Rojas",
+      "total": 3
+    }
+  ]
+}
+
+STDERR:

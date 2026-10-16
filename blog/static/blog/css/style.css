@@ -1,0 +1,22 @@
+/* Scoped styles for the ORM lab; the shared Nexo layout stays unchanged. */
+.orm-lab .orm-exercises { margin-block: 32px 46px; }
+.orm-lab .orm-exercises > h2 { font-size: 23px; font-weight: 650; margin-bottom: 20px; }
+.orm-lab .orm-exercise-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.orm-lab .orm-exercise, .orm-lab .orm-post { min-width: 0; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 24px; background: rgba(2,6,23,.5); }
+.orm-lab h3 { font-size: 19px; font-weight: 650; line-height: 1.45; overflow-wrap: anywhere; }
+.orm-lab .orm-exercise h3 { margin-block: 12px; }
+.orm-lab .orm-exercise p, .orm-lab .orm-post p { color: #a6b3c5; font-size: 13px; line-height: 1.85; margin-block: 12px; overflow-wrap: anywhere; }
+.orm-lab code { color: #c7d2fe; font-size: 12px; overflow-wrap: anywhere; }
+.orm-lab .orm-command { display: block; padding: 12px; border-radius: 10px; background: rgba(99,102,241,.09); }
+.orm-lab .orm-post-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.orm-lab .orm-post .orm-post-meta { color: #c7d2fe; font-size: 12px; }
+.orm-lab .orm-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.orm-lab .orm-tags span { padding: 5px 10px; border-radius: 999px; background: rgba(99,102,241,.12); color: #c7d2fe; font-size: 11px; }
+.orm-lab .orm-tags em { color: #94a3b8; font-size: 12px; }
+@media (max-width: 1050px) {
+    .orm-lab .orm-exercise-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+    .orm-lab .orm-post-grid { grid-template-columns: minmax(0, 1fr); }
+    .orm-lab .orm-exercise, .orm-lab .orm-post { padding: 20px; }
+}

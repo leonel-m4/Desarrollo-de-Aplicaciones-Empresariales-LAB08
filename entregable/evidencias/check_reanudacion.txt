@@ -1,0 +1,7 @@
+Command: python manage.py check
+Exit code: 0
+
+STDOUT:
+System check identified no issues (0 silenced).
+
+STDERR:

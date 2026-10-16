@@ -1,0 +1,30 @@
+{% extends 'news/base.html' %}
+
+{% block title %}{{ selected_category.name }} — Nexo{% endblock %}
+{% block breadcrumbs %}{% url 'news:home' as news_url %}{% include 'components/breadcrumbs.html' with parent_url=news_url parent_label='Noticias' current=selected_category.name only %}{% endblock %}
+
+{% block news_content %}
+<header class="page-heading category-heading">
+    <span class="eyebrow">Sección de noticias</span>
+    <h1>{{ selected_category.name }}</h1>
+    {% if selected_category.description %}<p>{{ selected_category.description }}</p>{% endif %}
+</header>
+
+<section aria-label="Noticias de {{ selected_category.name }}">
+    <div class="section-heading">
+        <h2>En esta sección</h2>
+        <span>{{ articles|length }} publicaciones</span>
+    </div>
+    <div class="article-grid">
+        {% for article in articles %}
+            {% include 'news/_article_card.html' with article=article only %}
+        {% empty %}
+            <div class="empty-state">
+                <h2>Esta sección aún no tiene noticias.</h2>
+                <p>Mientras tanto, descubre otras historias en la portada.</p>
+                <a class="button" href="{% url 'news:home' %}">Volver a la portada</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

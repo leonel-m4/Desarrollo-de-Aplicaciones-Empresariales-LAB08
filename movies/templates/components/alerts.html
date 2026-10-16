@@ -1,0 +1,14 @@
+{% if messages %}
+    <div class="mb-6 space-y-3">
+        {% for message in messages %}
+            <div class="rounded-3xl border border-white/10 bg-white/[0.06] p-4 shadow-premium backdrop-blur-xl">
+                <div class="flex items-start gap-3">
+                    <div class="grid h-10 w-10 place-items-center rounded-2xl {% if message.tags == 'success' %}bg-emerald-400/10 text-emerald-300{% elif message.tags == 'error' %}bg-rose-400/10 text-rose-300{% elif message.tags == 'warning' %}bg-amber-400/10 text-amber-300{% else %}bg-indigo-400/10 text-indigo-300{% endif %}">
+                        <i data-lucide="info" class="h-5 w-5"></i>
+                    </div>
+                    <p class="pt-2 text-sm font-medium text-slate-200">{{ message }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,0 +1,43 @@
+{
+  "recorded_at_utc": "2026-10-09T21:00:01.849771+00:00",
+  "python": "3.13.5",
+  "django": "6.1",
+  "dataset": {
+    "authors": 4,
+    "posts": 15,
+    "comments": 23,
+    "published_posts": 11
+  },
+  "front_page": {
+    "url": "/blog/",
+    "status": 200,
+    "queries": 23,
+    "separate_author_queries": 11,
+    "tag_queries": 11,
+    "sql": [
+      "SELECT \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\" FROM \"blog_post\" WHERE \"blog_post\".\"published\" = 1 ORDER BY \"blog_post\".\"published_at\" DESC",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 2 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 7",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 2 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 5",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 2 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 11",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 1 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 8",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 2 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 10",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 2 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 4",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 1 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 3",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 1 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 9",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 1 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 2",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 1 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 1",
+      "SELECT \"blog_author\".\"id\", \"blog_author\".\"name\" FROM \"blog_author\" WHERE \"blog_author\".\"id\" = 2 LIMIT 21",
+      "SELECT \"blog_tag\".\"id\", \"blog_tag\".\"name\" FROM \"blog_tag\" INNER JOIN \"blog_post_tags\" ON (\"blog_tag\".\"id\" = \"blog_post_tags\".\"tag_id\") WHERE \"blog_post_tags\".\"post_id\" = 6"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "recorded_at_utc": "2026-10-15T21:49:01.810491+00:00",
+  "human_approval": "User explicitly approved plan 4d7ffe2c0e99 in this session.",
+  "response": {
+    "status": "applied",
+    "plan": {
+      "action": "delete_comments_of_post",
+      "args": {
+        "post_id": 5
+      },
+      "details": {
+        "affected_comment_ids": [
+          16
+        ]
+      },
+      "plan_hash": "4d7ffe2c0e99"
+    },
+    "result": {
+      "deleted": 1
+    }
+  },
+  "after_deletion": {
+    "comments_of_post_5": 0,
+    "total_comments": 22,
+    "authors": 4,
+    "posts": 15,
+    "comments_of_post_1": 6
+  },
+  "after_seed_blog": {
+    "authors": 4,
+    "posts": 15,
+    "comments": 23,
+    "article": {
+      "id": 20,
+      "title": "Reseña: festival de cine andino"
+    },
+    "article_comment_ids": [
+      39
+    ]
+  }
+}

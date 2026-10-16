@@ -1,0 +1,10 @@
+Command: python manage.py shell -c from blog.models import Author, Post, Comment
+print({'authors': Author.objects.count(), 'posts': Post.objects.count(), 'comments': Comment.objects.count()})
+Exit code: 0
+
+STDOUT:
+23 objects imported automatically (use -v 2 for details).
+
+{'authors': 4, 'posts': 15, 'comments': 23}
+
+STDERR:

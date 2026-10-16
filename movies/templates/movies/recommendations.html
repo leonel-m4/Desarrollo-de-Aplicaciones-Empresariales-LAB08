@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Recomendaciones para {{ movie.title }} — Nexo{% endblock %}
+{% block breadcrumbs %}{% url 'movies:catalog' as catalog_url %}{% include 'components/breadcrumbs.html' with parent_url=catalog_url parent_label='Películas' current=movie.title only %}{% endblock %}
+
+{% block content %}
+<section class="movie-detail" aria-labelledby="selected-movie">
+    <div class="movie-detail-poster">
+        {% if movie.poster_url %}<img src="{{ movie.poster_url }}" alt="Afiche de {{ movie.title }}">{% elif movie.poster %}<img src="{{ movie.poster.url }}" alt="Afiche de {{ movie.title }}">{% else %}<div class="poster-placeholder"><i data-lucide="film" class="h-9 w-9" aria-hidden="true"></i></div>{% endif %}
+    </div>
+    <div>
+        <span class="eyebrow-label">A partir de esta película</span>
+        <h1 id="selected-movie">{{ movie.title }}</h1>
+        <p class="movie-detail-meta">{{ movie.release_year }}{% if movie.director %} · {{ movie.director.name }}{% endif %}</p>
+        <nav class="genre-links" aria-label="Géneros de {{ movie.title }}">
+            {% for genre in movie.genres.all %}<a class="genre-link" href="{% url 'movies:catalog' %}#categoria-{{ genre.pk }}">{{ genre.name }}</a>{% endfor %}
+        </nav>
+        <p class="movie-detail-summary">{{ movie.synopsis|default:'Sin sinopsis registrada.' }}</p>
+        <a class="nexo-button" href="{% url 'movies:catalog' %}"><i data-lucide="arrow-left" class="h-4 w-4" aria-hidden="true"></i>Volver a películas</a>
+    </div>
+</section>
+
+<section class="content-section" aria-labelledby="recommendations-heading">
+    <div class="section-header">
+        <div><span class="eyebrow-label">Tu siguiente película</span><h2 id="recommendations-heading">Mejor valoradas del mismo género</h2><p class="subtitle">Ordenadas por promedio de las valoraciones registradas.</p></div>
+    </div>
+    <div class="movie-grid">
+        {% for recommendation in recommendations %}
+            {% include 'components/movie_card.html' with movie=recommendation only %}
+        {% empty %}
+            <div class="empty-panel"><h2>Sin recomendaciones por ahora.</h2><p>No hay otras películas valoradas del mismo género.</p><a class="nexo-button" href="{% url 'movies:catalog' %}">Explorar el catálogo</a></div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

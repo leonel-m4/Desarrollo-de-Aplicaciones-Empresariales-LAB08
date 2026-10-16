@@ -1,0 +1,6 @@
+Command: python manage.py migrate --check
+Exit code: 0
+
+STDOUT:
+
+STDERR:

@@ -1,0 +1,9 @@
+Command: python manage.py shell -c from blog.models import Comment; comment = Comment.objects.create(post_id=20, author_name='Lector de prueba', text='Comentario agregado entre el plan y la aprobacion (paso 14).'); print({'id': comment.pk, 'post_id': comment.post_id})
+Exit code: 0
+
+STDOUT:
+23 objects imported automatically (use -v 2 for details).
+
+{'id': 47, 'post_id': 20}
+
+STDERR:

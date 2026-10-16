@@ -1,0 +1,13 @@
+Command: python manage.py duel --question q2 --strict
+Exit code: 1
+
+STDOUT:
+
+Duelo - respuestas de: team
+q2  [X] resultado distinto   1 consulta(s)   Los artículos que no tienen categoría asignada.
+      -> sobran 9 (p. ej. 'El problema de las N+1 consultas')
+
+0 de 1 correctas y baratas.
+
+STDERR:
+CommandError: Hay respuestas que no son correctas.

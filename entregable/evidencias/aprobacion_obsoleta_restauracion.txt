@@ -1,0 +1,7 @@
+Command: python manage.py seed_blog
+Exit code: 0
+
+STDOUT:
+Listo: 4 autores, 15 artículos, 23 comentarios.
+
+STDERR:

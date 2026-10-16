@@ -1,0 +1,26 @@
+{
+  "recorded_at_utc": "2026-10-16T00:05:33.430124+00:00",
+  "check": 1,
+  "evaluated_query_versions": 1,
+  "source": "team",
+  "question": "q4",
+  "saved_function": "def q4():\n    \"\"\"Los artículos con más de dos comentarios.\"\"\"\n    return (\n        Post.objects.annotate(n_comments=Count(\"comments\"))\n        .filter(n_comments__gt=2)\n    )\n",
+  "team_file_sha256": "614fa9dd10b81bfad6554e6572a6a6d3ea90e5ad00a15b097a14d161c8be43e7",
+  "status": "ok",
+  "queries": 1,
+  "detail": "",
+  "expected": [
+    "Introducción al ORM de Django",
+    "Managers propios paso a paso",
+    "QuerySets perezosos"
+  ],
+  "actual": [
+    "Introducción al ORM de Django",
+    "Managers propios paso a paso",
+    "QuerySets perezosos"
+  ],
+  "sql": [
+    "SELECT \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\", COUNT(\"blog_comment\".\"id\") AS \"n_comments\" FROM \"blog_post\" LEFT OUTER JOIN \"blog_comment\" ON (\"blog_post\".\"id\" = \"blog_comment\".\"post_id\") GROUP BY \"blog_post\".\"id\", \"blog_post\".\"title\", \"blog_post\".\"body\", \"blog_post\".\"author_id\", \"blog_post\".\"category_id\", \"blog_post\".\"published\", \"blog_post\".\"published_at\" HAVING COUNT(\"blog_comment\".\"id\") > 2"
+  ],
+  "context": "The assistant supplied the annotate(n_comments=Count(\"comments\")).filter(n_comments__gt=2) example in the conversation. The student saved this first evaluated q4 version. The assistant records its result without modifying team.py."
+}

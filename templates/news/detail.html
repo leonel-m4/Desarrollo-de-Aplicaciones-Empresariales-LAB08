@@ -1,0 +1,58 @@
+{% extends 'news/base.html' %}
+
+{% block title %}{{ article.title }} — Nexo{% endblock %}
+{% block breadcrumbs %}{% url 'news:home' as news_url %}{% include 'components/breadcrumbs.html' with parent_url=news_url parent_label='Noticias' current=article.title only %}{% endblock %}
+
+{% block news_content %}
+<article class="article-detail">
+    <div class="card-categories detail-categories">
+        {% for category in article.categories.all %}
+            <a href="{% url 'news:category' category.slug %}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+    <h1>{{ article.title }}</h1>
+    <p class="article-lead">{{ article.summary }}</p>
+    <div class="detail-meta">
+        <div class="author-info">
+            {% if article.author.photo %}
+                <img class="avatar" src="{{ article.author.photo.url }}" alt="" width="44" height="44">
+            {% else %}
+                <span class="avatar avatar-initial" aria-hidden="true">{{ article.author.name|first }}</span>
+            {% endif %}
+            <span>Por <strong>{{ article.author.name }}</strong></span>
+        </div>
+        <time datetime="{{ article.published_at|date:'c' }}">{{ article.published_at|date:'d \d\e F \d\e Y' }}</time>
+    </div>
+    {% if article.featured_image %}
+        <figure>
+            <img class="detail-image" src="{{ article.featured_image.url }}" alt="Imagen destacada de {{ article.title }}">
+            {% if article.image_credit %}
+                <figcaption class="image-credit">
+                    {{ article.image_credit }}
+                    {% if article.image_source_url %}<a href="{{ article.image_source_url }}" target="_blank" rel="noopener noreferrer">Ver imagen original ↗</a>{% endif %}
+                </figcaption>
+            {% endif %}
+        </figure>
+    {% endif %}
+    <div class="article-body">{{ article.body|linebreaksbr }}</div>
+    {% if article.source_url %}
+        <section class="source-note" aria-label="Fuente de la noticia">
+            <span class="eyebrow">Fuente original</span>
+            <a href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">{{ article.source_name|default:'Consultar publicación' }} ↗</a>
+            <p>Resumen en español elaborado por Nexo. Fecha correspondiente a la publicación de referencia.</p>
+        </section>
+    {% endif %}
+    {% if article.author.biography %}
+        <section class="author-bio">
+            <span class="eyebrow">Sobre el autor</span>
+            <h2>{{ article.author.name }}</h2>
+            <p>{{ article.author.biography }}</p>
+        </section>
+    {% endif %}
+    <a class="button article-return" href="{% url 'news:home' %}">Volver a noticias</a>
+</article>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'news/_related_articles.html' %}
+{% endblock %}

@@ -1,0 +1,11 @@
+Command: python manage.py duel --question q3 --strict
+Exit code: 0
+
+STDOUT:
+
+Duelo - respuestas de: team
+q3  [OK] correcta            1 consulta(s)   Los artículos publicados entre el 1 de marzo y el 31 de mayo
+
+1 de 1 correctas y baratas.
+
+STDERR:

@@ -1,0 +1,23 @@
+<article class="article-card{% if featured %} article-card--featured{% endif %}">
+    <a class="card-image-link" href="{% url 'news:detail' article.slug %}" tabindex="-1" aria-hidden="true">
+        {% if article.featured_image %}
+            <img class="card-image" src="{{ article.featured_image.url }}" alt="" loading="lazy">
+        {% else %}
+            <div class="image-placeholder">Nexo</div>
+        {% endif %}
+    </a>
+    <div class="card-content">
+        {% if featured %}<span class="eyebrow featured-label">En portada</span>{% endif %}
+        <div class="card-categories">
+            {% for category in article.categories.all %}
+                <a href="{% url 'news:category' category.slug %}">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+        <h2><a href="{% url 'news:detail' article.slug %}">{{ article.title }}</a></h2>
+        <p>{{ article.summary|truncatewords:24 }}</p>
+        <div class="card-meta">
+            <span>{{ article.source_name|default:article.author.name }}</span>
+            <time datetime="{{ article.published_at|date:'c' }}">{{ article.published_at|date:'d M Y' }}</time>
+        </div>
+    </div>
+</article>

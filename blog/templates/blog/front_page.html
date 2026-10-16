@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog ORM + IA — Nexo{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+{% include 'components/breadcrumbs.html' with current='Blog ORM' %}
+{% endblock %}
+
+{% block content %}
+<div class="orm-lab">
+    <section class="page-intro">
+        <span class="eyebrow-label">Laboratorio de la semana 7</span>
+        <h1>Blog ORM + IA</h1>
+        <p>Explora los artículos del laboratorio, compara consultas con una IA y aprende a verificar sus resultados. Estos datos de práctica son independientes de las noticias de Nexo.</p>
+    </section>
+
+    <section class="orm-exercises" aria-labelledby="orm-exercises-title">
+        <h2 id="orm-exercises-title">Tres retos para aprender</h2>
+        <div class="orm-exercise-grid">
+            <article class="orm-exercise">
+                <span class="eyebrow-label">01 · El duelo</span>
+                <h3>Escribe y compara consultas</h3>
+                <p>Completa q1–q4 sin IA en <code>blog/duel/team.py</code>. q5–q8 tienen una implementación asistida documentada en el entregable.</p>
+                <code class="orm-command">python manage.py duel</code>
+            </article>
+            <article class="orm-exercise">
+                <span class="eyebrow-label">02 · Del rojo al verde</span>
+                <h3>Una portada, dos consultas</h3>
+                <p><code>blog/queries.py</code> carga autores con <code>select_related</code> y etiquetas con <code>prefetch_related</code>. Con los datos del laboratorio, la portada pasó de 23 a 2 consultas.</p>
+                <code class="orm-command">python manage.py test blog.tests.test_front_page</code>
+            </article>
+            <article class="orm-exercise">
+                <span class="eyebrow-label">03 · La frontera</span>
+                <h3>Controla las acciones de la IA</h3>
+                <p>La pasarela de <code>blog/agent/registry.py</code> solo admite acciones registradas. Los borrados requieren aprobación humana desde la consola.</p>
+                <p>No se ejecutan acciones de la IA desde esta página.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="content-section" aria-labelledby="orm-posts-title">
+        <div class="section-header">
+            <div><span class="eyebrow-label">Datos de práctica</span><h2 id="orm-posts-title">Artículos publicados</h2></div>
+        </div>
+        <div class="orm-post-grid">
+            {% for post in posts %}
+                <article class="orm-post">
+                    <h3>{{ post.title }}</h3>
+                    <p class="orm-post-meta">Por {{ post.author.name }}{% if post.published_at %} · <time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|date:'d/m/Y' }}</time>{% endif %}</p>
+                    <p>{{ post.body|truncatewords:35 }}</p>
+                    <div class="orm-tags">
+                        {% for tag in post.tags.all %}<span>#{{ tag.name }}</span>{% empty %}<em>sin etiquetas</em>{% endfor %}
+                    </div>
+                </article>
+            {% empty %}
+                <div class="empty-panel">
+                    <h3>No hay artículos publicados.</h3>
+                    <p>Para cargar los datos de práctica en una base nueva, ejecuta <code>python manage.py seed_blog</code>. Este comando reemplaza los datos del blog, no los de películas ni noticias.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+Command: python manage.py agent --intent {"action": "run_sql", "args": {}}
+Exit code: 0
+
+STDOUT:
+{
+  "status": "denied",
+  "reason": "unknown action 'run_sql'"
+}
+
+STDERR:

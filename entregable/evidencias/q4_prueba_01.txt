@@ -1,0 +1,11 @@
+Command: python manage.py duel --question q4 --strict
+Exit code: 0
+
+STDOUT:
+
+Duelo - respuestas de: team
+q4  [OK] correcta            1 consulta(s)   Los artículos con más de dos comentarios.
+
+1 de 1 correctas y baratas.
+
+STDERR:

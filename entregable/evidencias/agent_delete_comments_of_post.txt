@@ -1,0 +1,28 @@
+Command: python manage.py agent --intent {"action": "delete_comments_of_post", "args": {"post_id": 1}}
+Exit code: 0
+
+STDOUT:
+{
+  "status": "approval_required",
+  "plan": {
+    "action": "delete_comments_of_post",
+    "args": {
+      "post_id": 1
+    },
+    "details": {
+      "affected_comment_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "plan_hash": "c3ff9f72bb5e"
+  }
+}
+
+No se aplicó nada. Si TÚ apruebas este plan, repite el comando con --approve c3ff9f72bb5e
+
+STDERR:

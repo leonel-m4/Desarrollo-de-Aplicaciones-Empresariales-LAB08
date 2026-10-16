@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Nexo — Cine, noticias y ORM{% endblock %}
+
+{% block content %}
+<section class="home-intro">
+    <div>
+        <span class="eyebrow-label">Tu punto de encuentro</span>
+        <h1>Historias para leer.<br>Cine para descubrir.</h1>
+        <p>Una selección de noticias y películas, y un espacio para aprender ORM con IA.</p>
+    </div>
+    <div class="home-shortcuts">
+        <a class="nexo-button nexo-button-primary" href="{% url 'movies:catalog' %}">Explorar películas <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i></a>
+        <a class="nexo-button" href="{% url 'news:home' %}">Leer noticias</a>
+        <a class="nexo-button" href="{% url 'front_page' %}">Explorar el blog ORM</a>
+    </div>
+</section>
+
+<section class="home-feature-grid" aria-label="Destacados de Nexo">
+    <div class="news-portal feature-news">
+        {% if featured_article %}
+            {% include 'news/_article_card.html' with article=featured_article featured=True only %}
+        {% else %}
+            <div class="empty-panel"><h2>La próxima historia está por llegar.</h2><p>Las publicaciones aparecerán aquí.</p><a class="nexo-button" href="{% url 'news:home' %}">Ir a noticias</a></div>
+        {% endif %}
+    </div>
+    <article class="feature-film">
+        <span class="eyebrow-label">Destacada en cine</span>
+        {% if featured_movie %}
+            <div class="feature-film-content">
+                <div class="feature-film-poster">
+                    {% if featured_movie.poster_url %}<img src="{{ featured_movie.poster_url }}" alt="Afiche de {{ featured_movie.title }}">{% elif featured_movie.poster %}<img src="{{ featured_movie.poster.url }}" alt="Afiche de {{ featured_movie.title }}">{% else %}<div class="poster-placeholder"><i data-lucide="film" class="h-9 w-9" aria-hidden="true"></i></div>{% endif %}
+                </div>
+                <div>
+                    <span class="film-score"><i data-lucide="star" aria-hidden="true"></i>{{ featured_movie.average_score|floatformat:1 }} / 5 <span>· {{ featured_movie.release_year }}</span></span>
+                    <h2 class="mt-3">{{ featured_movie.title }}</h2>
+                    <p>{{ featured_movie.synopsis|truncatewords:24 }}</p>
+                    <a class="nexo-button mt-4" href="{% url 'movies:recommendations' featured_movie.pk %}">Ver recomendaciones</a>
+                </div>
+            </div>
+        {% else %}
+            <h2>Descubre el catálogo.</h2><p>Las películas mejor valoradas aparecerán aquí.</p><a class="nexo-button" href="{% url 'movies:catalog' %}">Explorar películas</a>
+        {% endif %}
+    </article>
+</section>
+
+<section class="content-section" aria-labelledby="home-movies">
+    <div class="section-header">
+        <div><span class="eyebrow-label">En cine</span><h2 id="home-movies">Más películas para descubrir</h2></div>
+        <a class="section-link" href="{% url 'movies:catalog' %}">Ver las {{ movie_count }} películas <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i></a>
+    </div>
+    <div class="movie-grid">
+        {% for movie in main_movies %}
+            {% include 'components/movie_card.html' with movie=movie only %}
+        {% empty %}
+            <div class="empty-panel"><h3>Aún no hay más películas valoradas.</h3><p>Puedes consultar todos los títulos desde el catálogo.</p></div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="content-section news-portal" aria-labelledby="home-news">
+    <div class="section-header">
+        <div><span class="eyebrow-label">En noticias</span><h2 id="home-news">Más historias para leer</h2></div>
+        <a class="section-link" href="{% url 'news:home' %}">Ver todas las noticias <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i></a>
+    </div>
+    <div class="article-grid preview-grid">
+        {% for article in latest_articles %}
+            {% include 'news/_article_card.html' with article=article only %}
+        {% empty %}
+            <div class="empty-panel"><h3>No hay más publicaciones por ahora.</h3><p>Vuelve pronto para descubrir nuevas historias.</p></div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

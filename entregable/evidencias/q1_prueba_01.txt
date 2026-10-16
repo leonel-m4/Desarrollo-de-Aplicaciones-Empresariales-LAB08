@@ -1,0 +1,11 @@
+Command: python manage.py duel --question q1
+Exit code: 0
+
+STDOUT:
+
+Duelo - respuestas de: team
+q1  [ ] sin escribir                         Los artículos que ya están publicados.
+
+0 de 1 correctas y baratas.
+
+STDERR:

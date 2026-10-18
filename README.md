@@ -138,10 +138,10 @@ OBJETIVO Y LÍMITES
 
 ### Estado de la parte de Karim
 
-- [ ] API navegable: operaciones y capturas reales.
-- [ ] Cliente HTTP externo: operaciones y colección o script reproducible.
-- [ ] Tres errores, filtros, búsqueda y paginación: resultados registrados.
-- [ ] `entregable/LAB08.md`: tabla completa y enlaces a evidencias sanitizadas.
+- [x] API navegable: operaciones y capturas reales.
+- [x] Cliente HTTP externo: operaciones y colección o script reproducible.
+- [x] Tres errores, filtros, búsqueda y paginación: resultados registrados.
+- [x] `entregable/LAB08.md`: tabla completa y enlaces a evidencias sanitizadas.
 - [ ] Cambios de Karim publicados en GitHub.
 - [ ] Entregable subido al campus por Karim.
 

@@ -1,0 +1,12 @@
+Comando: python manage.py test quiz.tests.test_api quiz.tests.test_lab08 quiz.tests.test_permissions quiz.tests.test_agent
+Fecha: 2026-10-18 14:08:21
+
+Creating test database for alias 'default'...
+.................................................................
+----------------------------------------------------------------------
+Ran 65 tests in 6.059s
+
+OK
+Destroying test database for alias 'default'...
+Found 65 test(s).
+System check identified no issues (0 silenced).

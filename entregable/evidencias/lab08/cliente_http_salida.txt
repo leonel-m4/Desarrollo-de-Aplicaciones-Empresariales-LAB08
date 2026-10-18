@@ -1,0 +1,56 @@
+OK  GET    /api/exams/                                   200 (esperado 200)
+OK  POST   /api/exams/                                   201 (esperado 201)
+OK  GET    /api/exams/5/                                 200 (esperado 200)
+OK  PUT    /api/exams/5/                                 200 (esperado 200)
+OK  PATCH  /api/exams/5/                                 200 (esperado 200)
+OK  GET    /api/questions/                               200 (esperado 200)
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  GET    /api/questions/11/                            200 (esperado 200)
+OK  PUT    /api/questions/11/                            200 (esperado 200)
+OK  PATCH  /api/questions/11/                            200 (esperado 200)
+OK  El PATCH sin choices conserva las 3 opciones
+OK  GET    /api/choices/                                 200 (esperado 200)
+OK  POST   /api/choices/                                 201 (esperado 201)
+OK  GET    /api/choices/50/                              200 (esperado 200)
+OK  PUT    /api/choices/50/                              200 (esperado 200)
+OK  PATCH  /api/choices/50/                              200 (esperado 200)
+OK  DELETE /api/choices/50/                              204 (esperado 204)
+OK  GET    /api/choices/50/                              404 (esperado 404)
+OK  DELETE /api/questions/11/                            204 (esperado 204)
+OK  GET    /api/questions/11/                            404 (esperado 404)
+OK  GET    /api/questions/?exam=5                        200 (esperado 200)
+OK  POST   /api/questions/                               400 (esperado 400)
+OK  POST   /api/questions/                               400 (esperado 400)
+OK  POST   /api/questions/                               400 (esperado 400)
+OK  POST   /api/questions/                               400 (esperado 400)
+OK  GET    /api/questions/?exam=5                        200 (esperado 200)
+OK  Las peticiones inválidas no crearon preguntas
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  POST   /api/questions/                               201 (esperado 201)
+OK  GET    /api/exams/                                   200 (esperado 200)
+OK  GET    /api/questions/?exam=1                        200 (esperado 200)
+OK  ?exam devuelve solo preguntas de ese examen
+OK  GET    /api/questions/?search=prefetch_related       200 (esperado 200)
+OK  ?search devuelve preguntas que contienen el texto
+OK  GET    /api/questions/?exam=1&search=related         200 (esperado 200)
+OK  ?exam + ?search cumple ambas condiciones
+OK  GET    /api/questions/?exam=5&page=1                 200 (esperado 200)
+OK  GET    /api/questions/?exam=5&page=2                 200 (esperado 200)
+OK  count = 6, página 1 con 5 y página 2 con 1
+OK  Página 1: previous null y next a la página 2
+OK  Página 2: next null y previous a la página 1
+OK  Sin IDs repetidos entre páginas
+OK  GET    /api/questions/?page=1                        200 (esperado 200)
+OK  GET    /api/questions/?page=2                        200 (esperado 200)
+OK  Sin filtros: máximo 5 por página y sin repetir IDs
+OK  GET    /api/questions/?exam=abc                      400 (esperado 400)
+OK  GET    /api/questions/?page=999                      404 (esperado 404)
+OK  DELETE /api/exams/5/                                 204 (esperado 204)
+OK  GET    /api/exams/5/                                 404 (esperado 404)
+OK  GET    /api/questions/?exam=5                        200 (esperado 200)
+
+54 registros, 0 fallos

@@ -1,0 +1,4 @@
+Comando: python manage.py check
+Fecha: 2026-10-18 14:08:19
+
+System check identified no issues (0 silenced).

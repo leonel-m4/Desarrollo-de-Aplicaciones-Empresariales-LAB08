@@ -1,0 +1,95 @@
+[18/Oct/2026 14:05:33] "GET /api-auth/login/?next=/api/ HTTP/1.1" 200 2717
+[18/Oct/2026 14:05:35] "POST /api-auth/login/ HTTP/1.1" 302 0
+[18/Oct/2026 14:05:35] "GET /api/ HTTP/1.1" 200 6128
+[18/Oct/2026 14:05:36] "GET /api/exams/ HTTP/1.1" 200 9635
+[18/Oct/2026 14:05:39] "POST /api/exams/ HTTP/1.1" 201 9260
+[18/Oct/2026 14:05:40] "GET /api/exams/4/ HTTP/1.1" 200 10703
+[18/Oct/2026 14:05:42] "PUT /api/exams/4/ HTTP/1.1" 200 10721
+[18/Oct/2026 14:05:43] "GET /api/exams/4/ HTTP/1.1" 200 10721
+[18/Oct/2026 14:05:44] "PATCH /api/exams/4/ HTTP/1.1" 200 10729
+[18/Oct/2026 14:05:45] "GET /api/exams/4/ HTTP/1.1" 200 10727
+[18/Oct/2026 14:05:46] "GET /api/questions/ HTTP/1.1" 200 18045
+[18/Oct/2026 14:05:48] "POST /api/questions/ HTTP/1.1" 201 10523
+[18/Oct/2026 14:05:50] "GET /api/questions/10/ HTTP/1.1" 200 12265
+[18/Oct/2026 14:05:51] "PUT /api/questions/10/ HTTP/1.1" 200 12597
+[18/Oct/2026 14:05:53] "GET /api/questions/10/ HTTP/1.1" 200 12597
+[18/Oct/2026 14:05:54] "PATCH /api/questions/10/ HTTP/1.1" 200 12623
+[18/Oct/2026 14:05:55] "GET /api/questions/10/ HTTP/1.1" 200 12621
+[18/Oct/2026 14:05:56] "GET /api/choices/ HTTP/1.1" 200 13060
+[18/Oct/2026 14:05:58] "POST /api/choices/ HTTP/1.1" 201 10872
+[18/Oct/2026 14:05:59] "GET /api/choices/44/ HTTP/1.1" 200 12225
+[18/Oct/2026 14:06:01] "PUT /api/choices/44/ HTTP/1.1" 200 12243
+[18/Oct/2026 14:06:02] "GET /api/choices/44/ HTTP/1.1" 200 12243
+[18/Oct/2026 14:06:04] "PATCH /api/choices/44/ HTTP/1.1" 200 12251
+[18/Oct/2026 14:06:05] "GET /api/choices/44/ HTTP/1.1" 200 12249
+[18/Oct/2026 14:06:06] "GET /api/choices/44/ HTTP/1.1" 200 12249
+[18/Oct/2026 14:06:06] "DELETE /api/choices/44/ HTTP/1.1" 200 12019
+Not Found: /api/choices/44/
+[18/Oct/2026 14:06:08] "GET /api/choices/44/ HTTP/1.1" 404 12089
+[18/Oct/2026 14:06:09] "GET /api/questions/10/ HTTP/1.1" 200 12621
+[18/Oct/2026 14:06:10] "DELETE /api/questions/10/ HTTP/1.1" 200 11299
+Not Found: /api/questions/10/
+[18/Oct/2026 14:06:11] "GET /api/questions/10/ HTTP/1.1" 404 11371
+[18/Oct/2026 14:06:12] "GET /api/exams/4/ HTTP/1.1" 200 10727
+[18/Oct/2026 14:06:13] "DELETE /api/exams/4/ HTTP/1.1" 200 10345
+Not Found: /api/exams/4/
+[18/Oct/2026 14:06:14] "GET /api/exams/4/ HTTP/1.1" 404 10413
+[18/Oct/2026 14:06:16,151] - Broken pipe from ('127.0.0.1', 55993)
+[18/Oct/2026 14:06:16,152] - Broken pipe from ('127.0.0.1', 64574)
+[18/Oct/2026 14:06:16,154] - Broken pipe from ('127.0.0.1', 54745)
+[18/Oct/2026 14:06:16,160] - Broken pipe from ('127.0.0.1', 52060)
+[18/Oct/2026 14:06:16,161] - Broken pipe from ('127.0.0.1', 57309)
+[18/Oct/2026 14:06:16,161] - Broken pipe from ('127.0.0.1', 64753)
+[18/Oct/2026 14:07:18] "GET /api/exams/ HTTP/1.1" 200 258
+[18/Oct/2026 14:07:18] "POST /api/exams/ HTTP/1.1" 201 111
+[18/Oct/2026 14:07:18] "GET /api/exams/5/ HTTP/1.1" 200 111
+[18/Oct/2026 14:07:18] "PUT /api/exams/5/ HTTP/1.1" 200 117
+[18/Oct/2026 14:07:18] "PATCH /api/exams/5/ HTTP/1.1" 200 119
+[18/Oct/2026 14:07:18] "GET /api/questions/ HTTP/1.1" 200 2368
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 241
+[18/Oct/2026 14:07:18] "GET /api/questions/11/ HTTP/1.1" 200 241
+[18/Oct/2026 14:07:18] "PUT /api/questions/11/ HTTP/1.1" 200 306
+[18/Oct/2026 14:07:18] "PATCH /api/questions/11/ HTTP/1.1" 200 314
+[18/Oct/2026 14:07:18] "GET /api/choices/ HTTP/1.1" 200 548
+[18/Oct/2026 14:07:18] "POST /api/choices/ HTTP/1.1" 201 61
+[18/Oct/2026 14:07:18] "GET /api/choices/50/ HTTP/1.1" 200 61
+[18/Oct/2026 14:07:18] "PUT /api/choices/50/ HTTP/1.1" 200 67
+[18/Oct/2026 14:07:18] "PATCH /api/choices/50/ HTTP/1.1" 200 69
+[18/Oct/2026 14:07:18] "DELETE /api/choices/50/ HTTP/1.1" 204 0
+Not Found: /api/choices/50/
+[18/Oct/2026 14:07:18] "GET /api/choices/50/ HTTP/1.1" 404 47
+[18/Oct/2026 14:07:18] "DELETE /api/questions/11/ HTTP/1.1" 204 0
+Not Found: /api/questions/11/
+[18/Oct/2026 14:07:18] "GET /api/questions/11/ HTTP/1.1" 404 49
+[18/Oct/2026 14:07:18] "GET /api/questions/?exam=5 HTTP/1.1" 200 52
+Bad Request: /api/questions/
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 400 37
+Bad Request: /api/questions/
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 400 84
+Bad Request: /api/questions/
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 400 60
+Bad Request: /api/questions/
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 400 60
+[18/Oct/2026 14:07:18] "GET /api/questions/?exam=5 HTTP/1.1" 200 52
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 207
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 207
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 207
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 207
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 207
+[18/Oct/2026 14:07:18] "POST /api/questions/ HTTP/1.1" 201 207
+[18/Oct/2026 14:07:18] "GET /api/exams/ HTTP/1.1" 200 378
+[18/Oct/2026 14:07:18] "GET /api/questions/?exam=1 HTTP/1.1" 200 2007
+[18/Oct/2026 14:07:18] "GET /api/questions/?search=prefetch_related HTTP/1.1" 200 648
+[18/Oct/2026 14:07:18] "GET /api/questions/?exam=1&search=related HTTP/1.1" 200 1096
+[18/Oct/2026 14:07:18] "GET /api/questions/?exam=5&page=1 HTTP/1.1" 200 1139
+[18/Oct/2026 14:07:19] "GET /api/questions/?exam=5&page=2 HTTP/1.1" 200 300
+[18/Oct/2026 14:07:19] "GET /api/questions/?page=1 HTTP/1.1" 200 2369
+[18/Oct/2026 14:07:19] "GET /api/questions/?page=2 HTTP/1.1" 200 1932
+Bad Request: /api/questions/
+[18/Oct/2026 14:07:19] "GET /api/questions/?exam=abc HTTP/1.1" 400 50
+Not Found: /api/questions/
+[18/Oct/2026 14:07:19] "GET /api/questions/?page=999 HTTP/1.1" 404 31
+[18/Oct/2026 14:07:19] "DELETE /api/exams/5/ HTTP/1.1" 204 0
+Not Found: /api/exams/5/
+[18/Oct/2026 14:07:19] "GET /api/exams/5/ HTTP/1.1" 404 45
+[18/Oct/2026 14:07:19] "GET /api/questions/?exam=5 HTTP/1.1" 200 52

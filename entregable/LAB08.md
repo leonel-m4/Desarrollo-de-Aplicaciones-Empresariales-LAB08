@@ -181,7 +181,3 @@ Los comandos y la salida real están en [revision_2026-11-01.txt](evidencias/lab
 ### Publicación en GitHub
 
 El proyecto, el entregable y las evidencias originales están publicados en la rama `main`, commit [`23b753a`](https://github.com/leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB08/commit/23b753ad7a460bc5115a4030aeed2e46f744a7ec). La referencia remota se comprobó el **01/11/2026** con `git ls-remote --heads origin main`. Las correcciones de esta revisión se identifican por separado en el historial de la rama `main`; el hash anterior corresponde a la entrega original.
-
-## Pendiente
-
-- Pendiente: Karim debe subir entregable/LAB08.md (o el formato solicitado por el docente) al campus virtual.

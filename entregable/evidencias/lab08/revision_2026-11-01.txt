@@ -75,4 +75,3 @@ Las capturas, el log del servidor y los resultados HTTP originales corresponden
 al 18/10/2026 y no se han vuelto a generar. En navegador_registro.json se conservan
 los estados mostrados y se añaden los códigos HTTP reales de los DELETE según
 las líneas 26, 30 y 34 de servidor_runserver.log.
-La carga al campus virtual sigue pendiente de confirmación del integrante.

@@ -5,7 +5,7 @@ API de exámenes, preguntas y opciones con Django REST Framework.
 También contiene el laboratorio **extra** de contrato OpenAPI, cliente de consola
 y frontera de un agente de IA. Ese extra no forma parte de los pasos 1–12 revisados aquí.
 
-La guía del laboratorio (con su rúbrica) está en el campus virtual; aquí está el código.
+Este repositorio contiene el código, el entregable y las evidencias del laboratorio.
 
 ## Lab 8 — API REST de cuestionarios
 
@@ -20,12 +20,11 @@ La [revisión local del 01/11/2026](entregable/evidencias/lab08/revision_2026-11
 pasó **66 pruebas**, incluida una nueva comprobación de los DELETE en HTML y JSON.
 El proyecto y las evidencias están publicados en GitHub en el commit
 [`23b753a`](https://github.com/leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB08/commit/23b753ad7a460bc5115a4030aeed2e46f744a7ec).
-**Pendiente del paso 12:** confirmar la carga del entregable al campus virtual.
 
 ## Parte de Karim — guía para repetir las comprobaciones
 
 **Completados:** pasos **7, 8, 9 y 11**, la comprobación del paso **10** y la
-publicación en GitHub del paso **12**. La entrega al campus sigue sin confirmarse.
+publicación en GitHub del paso **12**.
 
 El bloque siguiente se conserva como guía para reproducir las comprobaciones;
 no es una lista de tareas todavía pendientes ni un script que se ejecute
@@ -138,10 +137,6 @@ OBJETIVO Y LÍMITES
   autenticación, solicita autorización por el flujo normal de GitHub.
 - Actualiza el estado de esta sección del README según lo que realmente quedó
   comprobado y entrega un resumen con archivos, pruebas, enlace y pendientes.
-- Deja listo el entregable para el campus. La carga en Canvas requiere la
-  sesión y confirmación de Karim; no la des por hecha. Si no puedes realizarla,
-  indica claramente: "Pendiente: Karim debe subir entregable/LAB08.md (o el
-  formato solicitado por el docente) al campus virtual".
 ```
 
 ### Estado de la parte de Karim
@@ -151,7 +146,6 @@ OBJETIVO Y LÍMITES
 - [x] Tres errores, filtros, búsqueda y paginación: resultados registrados.
 - [x] `entregable/LAB08.md`: tabla completa y enlaces a evidencias sanitizadas.
 - [x] Cambios de Karim publicados en GitHub: commit `23b753a`.
-- [ ] Entregable subido al campus por Karim.
 
 **Nota sobre DELETE:** el registro del servidor confirma HTTP 200 con HTML para
 la API navegable, aunque la página muestra `204 No Content`. El cliente JSON

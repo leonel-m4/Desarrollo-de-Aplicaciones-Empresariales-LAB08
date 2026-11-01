@@ -21,6 +21,20 @@ pasó **66 pruebas**, incluida una nueva comprobación de los DELETE en HTML y J
 El proyecto y las evidencias están publicados en GitHub en el commit
 [`23b753a`](https://github.com/leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB08/commit/23b753ad7a460bc5115a4030aeed2e46f744a7ec).
 
+### Capturas de la API
+
+Selección de las capturas originales del **18/10/2026**. Puedes abrir cada imagen
+para ampliarla; la [galería completa de 26 capturas](entregable/LAB08.md#capturas-de-la-api-navegable)
+está organizada por recurso y operación en el entregable.
+
+| Listar exámenes — GET 200 | Crear un examen — POST 201 |
+| --- | --- |
+| ![Listado paginado de exámenes con HTTP 200](entregable/evidencias/lab08/navegador/03_get.png) | ![Examen creado con HTTP 201](entregable/evidencias/lab08/navegador/05_post.png) |
+| **Crear una pregunta con opciones anidadas — POST 201** | **Modificar una pregunta — PATCH 200** |
+| ![Pregunta creada con su examen por ID y opciones anidadas](entregable/evidencias/lab08/navegador/11_post.png) | ![Modificación parcial del enunciado conservando las opciones](entregable/evidencias/lab08/navegador/14_patch.png) |
+| **Crear una opción — POST 201** | **Consultar un examen eliminado — GET 404** |
+| ![Distractor creado con HTTP 201 y question por ID](entregable/evidencias/lab08/navegador/17_post.png) | ![Examen eliminado: la consulta posterior devuelve HTTP 404](entregable/evidencias/lab08/navegador/26_get.png) |
+
 ## Parte de Karim — guía para repetir las comprobaciones
 
 **Completados:** pasos **7, 8, 9 y 11**, la comprobación del paso **10** y la

@@ -129,6 +129,58 @@ El registro del servidor de esta pasada está en [servidor_runserver.log](eviden
 
 **Aclaración de los DELETE:** las líneas 26, 30 y 34 del log registran HTTP **200** y un cuerpo HTML de 12019, 11299 y 10345 bytes, respectivamente. Las capturas muestran `HTTP 204 No Content` dentro de esa página: es el estado de la operación que presenta `BrowsableAPIRenderer`, no el código final de la respuesta HTML. En `navegador_registro.json`, `estado` y `respuesta` conservan el contenido mostrado; se añadieron `codigo_http`, `bytes_respuesta_http` y la referencia al log para distinguirlo del transporte real. No se modificaron las capturas ni el log original.
 
+#### Capturas de la API navegable
+
+Las siguientes imágenes son las **26 capturas originales del 18/10/2026**, no una nueva ejecución. Se muestran directamente para acompañar la tabla de resultados; abre cada imagen para verla a tamaño completo.
+
+**Acceso y raíz de la API**
+
+| 01. Inicio de sesión (contraseña oculta) | 02. Raíz de la API — GET 200 |
+| --- | --- |
+| ![Formulario de inicio de sesión con la contraseña oculta](evidencias/lab08/navegador/01_login.png) | ![Raíz de la API con enlaces a exámenes, preguntas y opciones](evidencias/lab08/navegador/02_get.png) |
+
+**Exámenes**
+
+| 03. Listado — GET 200 | 04. Formulario POST con JSON |
+| --- | --- |
+| ![Listado de exámenes con count y question_count](evidencias/lab08/navegador/03_get.png) | ![Cuerpo JSON de creación de un examen en Raw data](evidencias/lab08/navegador/04_post_form.png) |
+| **05. Creación — POST 201** | **06. Detalle — GET 200** |
+| ![Examen creado con HTTP 201](evidencias/lab08/navegador/05_post.png) | ![Detalle del examen creado con HTTP 200](evidencias/lab08/navegador/06_get.png) |
+| **07. Reemplazo — PUT 200** | **08. Modificación parcial — PATCH 200** |
+| ![Reemplazo del título del examen mediante PUT](evidencias/lab08/navegador/07_put.png) | ![Modificación parcial del título del examen mediante PATCH](evidencias/lab08/navegador/08_patch.png) |
+
+**Preguntas**
+
+| 09. Listado paginado — GET 200 | 10. Formulario POST con opciones anidadas |
+| --- | --- |
+| ![Primera página de preguntas con count, next y choices anidadas](evidencias/lab08/navegador/09_get.png) | ![Cuerpo JSON de una pregunta con exam por ID y choices anidadas](evidencias/lab08/navegador/10_post_form.png) |
+| **11. Creación — POST 201** | **12. Detalle — GET 200** |
+| ![Pregunta creada con dos opciones y exactamente una correcta](evidencias/lab08/navegador/11_post.png) | ![Detalle de la pregunta con sus opciones anidadas](evidencias/lab08/navegador/12_get.png) |
+| **13. Reemplazo — PUT 200** | **14. Modificación parcial — PATCH 200** |
+| ![Reemplazo del enunciado y de la lista completa de opciones](evidencias/lab08/navegador/13_put.png) | ![PATCH del enunciado que conserva las opciones existentes](evidencias/lab08/navegador/14_patch.png) |
+
+**Opciones**
+
+| 15. Listado — GET 200 | 16. Formulario POST de un distractor |
+| --- | --- |
+| ![Listado paginado de opciones con su question por ID](evidencias/lab08/navegador/15_get.png) | ![Cuerpo JSON de un distractor con is_correct false](evidencias/lab08/navegador/16_post_form.png) |
+| **17. Creación — POST 201** | **18. Detalle — GET 200** |
+| ![Distractor creado con HTTP 201](evidencias/lab08/navegador/17_post.png) | ![Detalle del distractor creado con HTTP 200](evidencias/lab08/navegador/18_get.png) |
+| **19. Reemplazo — PUT 200** | **20. Modificación parcial — PATCH 200** |
+| ![Reemplazo de la opción mediante PUT](evidencias/lab08/navegador/19_put.png) | ![Modificación parcial del texto de la opción mediante PATCH](evidencias/lab08/navegador/20_patch.png) |
+
+**Eliminaciones y comprobación posterior**
+
+En las capturas 21, 23 y 25, el estado mostrado es `204 No Content`, pero la respuesta HTML viaja con HTTP **200**, como se explica arriba. La consulta posterior de cada recurso eliminado devuelve **404**.
+
+| 21. DELETE de una opción — HTML 200, muestra 204 | 22. Opción eliminada — GET 404 |
+| --- | --- |
+| ![Eliminación de la opción: la página HTML muestra 204 No Content](evidencias/lab08/navegador/21_delete.png) | ![Consulta de la opción eliminada con HTTP 404](evidencias/lab08/navegador/22_get.png) |
+| **23. DELETE de una pregunta — HTML 200, muestra 204** | **24. Pregunta eliminada — GET 404** |
+| ![Eliminación de la pregunta: la página HTML muestra 204 No Content](evidencias/lab08/navegador/23_delete.png) | ![Consulta de la pregunta eliminada con HTTP 404](evidencias/lab08/navegador/24_get.png) |
+| **25. DELETE de un examen — HTML 200, muestra 204** | **26. Examen eliminado — GET 404** |
+| ![Eliminación del examen: la página HTML muestra 204 No Content](evidencias/lab08/navegador/25_delete.png) | ![Consulta del examen eliminado con HTTP 404](evidencias/lab08/navegador/26_get.png) |
+
 ### Paso 8 — Cliente HTTP externo (comprobado)
 
 [tools/lab08_http_client.py](../tools/lab08_http_client.py) hizo **54 registros (44 peticiones HTTP y 10 verificaciones de contenido) con 0 fallos**: [salida de consola](evidencias/lab08/cliente_http_salida.txt) y [peticiones y respuestas](evidencias/lab08/cliente_http.json).

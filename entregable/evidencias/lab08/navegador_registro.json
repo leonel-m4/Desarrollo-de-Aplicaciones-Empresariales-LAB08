@@ -1,6 +1,7 @@
 {
   "fecha": "2026-10-18 14:06:16",
   "base": "http://127.0.0.1:8000",
+  "nota_estados": "estado y respuesta conservan lo mostrado dentro de la API navegable, no necesariamente el código y cuerpo HTTP finales. En los DELETE, la página muestra 204 pero se transmite con HTTP 200 y un cuerpo HTML. codigo_http y bytes_respuesta_http se contrastaron con servidor_runserver.log el 2026-11-01; no se modificaron las capturas ni el log original.",
   "operaciones": [
     {
       "n": 1,
@@ -277,6 +278,9 @@
       "cuerpo_enviado": null,
       "estado": "HTTP 204 No Content",
       "respuesta": "",
+      "codigo_http": 200,
+      "bytes_respuesta_http": 12019,
+      "fuente_codigo_http": "servidor_runserver.log:26",
       "captura": "21_delete.png"
     },
     {
@@ -297,6 +301,9 @@
       "cuerpo_enviado": null,
       "estado": "HTTP 204 No Content",
       "respuesta": "",
+      "codigo_http": 200,
+      "bytes_respuesta_http": 11299,
+      "fuente_codigo_http": "servidor_runserver.log:30",
       "captura": "23_delete.png"
     },
     {
@@ -317,6 +324,9 @@
       "cuerpo_enviado": null,
       "estado": "HTTP 204 No Content",
       "respuesta": "",
+      "codigo_http": 200,
+      "bytes_respuesta_http": 10345,
+      "fuente_codigo_http": "servidor_runserver.log:34",
       "captura": "25_delete.png"
     },
     {

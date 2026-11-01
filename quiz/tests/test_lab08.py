@@ -330,3 +330,41 @@ class BrowsableApiTests(APITestCase):
             HTTP_X_CSRFTOKEN=self.client.cookies["csrftoken"].value,
         )
         self.assertEqual(response.status_code, 201)
+
+    def test_delete_returns_html_200_or_empty_json_204(self):
+        self.login_through_browser()
+        csrf_token = self.client.cookies["csrftoken"].value
+        for accept, expected in (
+            ("text/html", 200), ("application/json", 204)
+        ):
+            exam = Exam.objects.create(title="Delete representation test")
+            question = Question.objects.create(
+                exam=exam, text="Which response format is requested?"
+            )
+            Choice.objects.bulk_create([
+                Choice(question=question, text="Correct", is_correct=True),
+                Choice(question=question, text="Incorrect", is_correct=False),
+            ])
+            distractor = Choice.objects.create(
+                question=question, text="Extra distractor", is_correct=False
+            )
+            paths = [
+                f"/api/choices/{distractor.pk}/",
+                f"/api/questions/{question.pk}/",
+                f"/api/exams/{exam.pk}/",
+            ]
+            for path in paths:
+                with self.subTest(accept=accept, path=path):
+                    response = self.client.delete(
+                        path, HTTP_ACCEPT=accept,
+                        HTTP_X_CSRFTOKEN=csrf_token,
+                    )
+                    self.assertEqual(response.status_code, expected)
+                    if accept == "text/html":
+                        self.assertTrue(
+                            response["Content-Type"].startswith("text/html")
+                        )
+                        self.assertContains(response, "204 No Content")
+                    else:
+                        self.assertEqual(response.content, b"")
+                    self.assertEqual(self.client.get(path).status_code, 404)

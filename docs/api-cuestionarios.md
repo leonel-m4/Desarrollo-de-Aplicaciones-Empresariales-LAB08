@@ -1,8 +1,8 @@
 # Lab 8: implementación de la API de cuestionarios
 
 Este documento describe los pasos **1–6 y 10**, correspondientes a la implementación.
-Las pruebas manuales por HTTP, sus evidencias y la tabla de entrega corresponden
-al segundo integrante y deben registrarse en `entregable/LAB08.md`.
+Las pruebas manuales por HTTP, sus evidencias y la tabla de entrega del segundo
+integrante están documentadas en [entregable/LAB08.md](../entregable/LAB08.md).
 
 ## Preparación
 
@@ -40,6 +40,13 @@ Para la API navegable abre <http://127.0.0.1:8000/api/> e inicia sesión mediant
 el enlace **Log in**. Las sesiones usan protección CSRF. En las preguntas puedes
 utilizar la pestaña **Raw data** con `application/json` para enviar las opciones
 anidadas.
+
+En un `DELETE` correcto, `BrowsableAPIRenderer` muestra `204 No Content` dentro
+de la página, pero entrega esa página HTML con código HTTP **200**. Con respuesta
+JSON (`Accept: application/json`) devuelve **204 sin cuerpo**. Anota el código
+de red y el estado mostrado por separado: la diferencia depende del formato de
+respuesta, no de usar sesión o token. El `GET` posterior devuelve **404** en ambos
+casos porque el recurso sí se ha eliminado.
 
 Los clientes externos conservan la autenticación por token:
 
@@ -123,8 +130,8 @@ En `/api/choices/`, la relación `question` sí se envía explícitamente como I
 - Eliminar un examen elimina sus preguntas y opciones; eliminar una pregunta
   elimina sus opciones, conforme a las relaciones `CASCADE` del modelo.
 
-Para comprobar un ciclo CRUD de opciones con eliminación `204`, crea un
-distractor (`is_correct: false`) en una pregunta válida y luego elimínalo.
+Para comprobar un ciclo CRUD de opciones con respuesta JSON de eliminación `204`,
+crea un distractor (`is_correct: false`) en una pregunta válida y luego elimínalo.
 Eliminar directamente la única opción correcta devuelve `400` por diseño.
 
 ## Filtros, búsqueda y paginación
@@ -155,7 +162,12 @@ El esquema OpenAPI está en `/api/schema/` y la documentación interactiva en
 .\.venv\Scripts\python.exe manage.py test quiz.tests.test_api quiz.tests.test_lab08 quiz.tests.test_permissions quiz.tests.test_agent
 ```
 
-Estas comprobaciones no sustituyen las pruebas manuales ni la tabla que debe
-preparar el segundo integrante. `quizctl.py` pertenece al laboratorio extra del
+La revisión local del **01/11/2026** pasó **66 pruebas**, incluida la comprobación
+de DELETE con sesión y CSRF para los tres recursos: HTML con HTTP 200 y JSON con
+HTTP 204 sin cuerpo. Los resultados están en
+[revision_2026-11-01.txt](../entregable/evidencias/lab08/revision_2026-11-01.txt).
+
+Estas comprobaciones no sustituyen las pruebas manuales ni la tabla disponibles
+en el entregable. `quizctl.py` pertenece al laboratorio extra del
 cliente de consola y conserva sus dos ejercicios pendientes; no se necesita para
 probar esta API con Postman, Insomnia o un cliente HTTP equivalente.

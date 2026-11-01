@@ -15,7 +15,7 @@ Repositorio del equipo: [leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB0
 - Versión del proyecto usada: commit `50eae7f` de la rama `main`.
 - Entorno: Windows 11, Python 3.14.0, Django 6.1.2, Django REST Framework 3.18.3,
   drf-spectacular 0.30.0 y requests 2.34.2.
-- Servidor real: `runserver 127.0.0.1:8000 --noreload`. Ninguna comprobación usa el ORM ni el `APIClient` de DRF.
+- Servidor real: `runserver 127.0.0.1:8000 --noreload`. Las comprobaciones manuales por HTTP de los pasos 7–10 no usan el ORM ni el `APIClient` de DRF; las pruebas automatizadas del backend sí utilizan las herramientas de prueba de Django y DRF.
 
 ## Preparación del entorno
 
@@ -46,6 +46,8 @@ El script [tools/lab08_http_client.py](../tools/lab08_http_client.py) usa `reque
 ## Tabla de la API
 
 Todas las rutas requieren autenticación (token o sesión). Los IDs de la tabla son los que devolvió el servidor en la ejecución del cliente externo. Las listas devuelven `count`, `next`, `previous` y `results`, con un máximo de 5 elementos.
+
+Los códigos y cuerpos de esta tabla corresponden a respuestas **JSON** (`Accept: application/json`). En la API navegable, un DELETE correcto muestra `204 No Content`, pero la página HTML se transmite con HTTP **200**; véase la comparación del paso 7.
 
 ### Exámenes
 
@@ -102,7 +104,7 @@ Todas las rutas requieren autenticación (token o sesión). Los IDs de la tabla 
 - **Opciones anidadas:** `QuestionSerializer` recibe y devuelve `choices` dentro de la pregunta, sin repetir `question`. Un POST crea la pregunta y sus opciones a la vez. En PUT o PATCH, enviar `choices` reemplaza la lista completa (los IDs cambian). Un PATCH sin `choices` las conserva. En `/api/choices/`, en cambio, `question` se envía como ID.
 - **Campos de solo lectura:** `id` en los tres recursos. `created_at` y `question_count` en exámenes, y `created_at` en preguntas. Aparecen en las respuestas, pero el cliente no puede escribirlos.
 - **Validación:** una pregunta necesita al menos 2 opciones y exactamente 1 correcta (`quiz/validators.py`). Lo mismo se comprueba al crear, editar o borrar una opción suelta. Una petición inválida devuelve 400 y no guarda nada.
-- **Permisos:** `IsAuthenticated` y `AgentPermission`. Un usuario `is_staff` puede hacer todo. El grupo `agente` puede leer, crear y modificar, pero no eliminar. El resto de usuarios autenticados solo lee. Sin credenciales responde 401 (el registro del servidor muestra `GET /api/` → 401 antes de iniciar sesión) y sin permiso, 403. Los clientes externos usan token; la API navegable usa sesión con CSRF.
+- **Permisos:** `IsAuthenticated` y `AgentPermission`. Un usuario `is_staff` puede hacer todo. El grupo `agente` puede leer, crear y modificar, pero no eliminar. El resto de usuarios autenticados solo lee. Sin credenciales responde 401 y sin permiso, 403; estos casos están cubiertos por las pruebas automatizadas del backend. Los clientes externos usan token; la API navegable usa sesión con CSRF.
 - **Filtros y búsqueda:** `?exam=<id>` filtra por examen y exige un entero positivo (si no, 400). `?search=<texto>` busca en `text` sin distinguir mayúsculas. Se pueden combinar.
 - **Paginación:** `PageNumberPagination` con 5 elementos por página, ordenados por ID para que las páginas sean estables. Una página que no existe devuelve 404.
 
@@ -112,28 +114,30 @@ Todas las rutas requieren autenticación (token o sesión). Los IDs de la tabla 
 
 Se inició sesión como `profe` en `/api-auth/login/` y se usaron los formularios **Raw data** con `application/json` en un Chrome con perfil temporal y sin traducción. El Chrome habitual traducía la página y cambiaba el texto, así que no se usó. Las 26 capturas están en [evidencias/lab08/navegador/](evidencias/lab08/navegador/) y el registro de cada petición en [navegador_registro.json](evidencias/lab08/navegador_registro.json).
 
-| # | Método | URL | Código | Captura |
+| # | Método | URL | Código HTTP de red | Captura |
 | --- | --- | --- | --- | --- |
 | 1 | POST | `/api-auth/login/` | 302 (registro del servidor) | [01_login.png](evidencias/lab08/navegador/01_login.png) (contraseña oculta) |
 | 2 | GET | `/api/` | 200 | [02_get.png](evidencias/lab08/navegador/02_get.png) |
 | 3–8 | GET, POST, GET, PUT, PATCH | `/api/exams/` y `/api/exams/4/` | 200, 201, 200, 200, 200 | [03](evidencias/lab08/navegador/03_get.png), [04 (cuerpo)](evidencias/lab08/navegador/04_post_form.png), [05](evidencias/lab08/navegador/05_post.png), [06](evidencias/lab08/navegador/06_get.png), [07](evidencias/lab08/navegador/07_put.png), [08](evidencias/lab08/navegador/08_patch.png) |
 | 9–14 | GET, POST, GET, PUT, PATCH | `/api/questions/` y `/api/questions/10/` | 200, 201, 200, 200, 200 | [09](evidencias/lab08/navegador/09_get.png), [10 (cuerpo)](evidencias/lab08/navegador/10_post_form.png), [11](evidencias/lab08/navegador/11_post.png), [12](evidencias/lab08/navegador/12_get.png), [13](evidencias/lab08/navegador/13_put.png), [14](evidencias/lab08/navegador/14_patch.png) |
 | 15–20 | GET, POST, GET, PUT, PATCH | `/api/choices/` y `/api/choices/44/` | 200, 201, 200, 200, 200 | [15](evidencias/lab08/navegador/15_get.png), [16 (cuerpo)](evidencias/lab08/navegador/16_post_form.png), [17](evidencias/lab08/navegador/17_post.png), [18](evidencias/lab08/navegador/18_get.png), [19](evidencias/lab08/navegador/19_put.png), [20](evidencias/lab08/navegador/20_patch.png) |
-| 21–22 | DELETE, GET | `/api/choices/44/` | 204 sin cuerpo, 404 | [21](evidencias/lab08/navegador/21_delete.png), [22](evidencias/lab08/navegador/22_get.png) |
-| 23–24 | DELETE, GET | `/api/questions/10/` | 204 sin cuerpo, 404 | [23](evidencias/lab08/navegador/23_delete.png), [24](evidencias/lab08/navegador/24_get.png) |
-| 25–26 | DELETE, GET | `/api/exams/4/` | 204 sin cuerpo, 404 | [25](evidencias/lab08/navegador/25_delete.png), [26](evidencias/lab08/navegador/26_get.png) |
+| 21–22 | DELETE, GET | `/api/choices/44/` | 200 con HTML (la página muestra 204), 404 | [21](evidencias/lab08/navegador/21_delete.png), [22](evidencias/lab08/navegador/22_get.png) |
+| 23–24 | DELETE, GET | `/api/questions/10/` | 200 con HTML (la página muestra 204), 404 | [23](evidencias/lab08/navegador/23_delete.png), [24](evidencias/lab08/navegador/24_get.png) |
+| 25–26 | DELETE, GET | `/api/exams/4/` | 200 con HTML (la página muestra 204), 404 | [25](evidencias/lab08/navegador/25_delete.png), [26](evidencias/lab08/navegador/26_get.png) |
 
 El registro del servidor de esta pasada está en [servidor_runserver.log](evidencias/lab08/servidor_runserver.log). Hubo una pasada anterior que se descartó porque el script de capturas tenía mal la codificación de las tildes. Sus registros de prueba (examen 3, pregunta 9 y opción 38) se eliminaron en esa misma pasada.
 
+**Aclaración de los DELETE:** las líneas 26, 30 y 34 del log registran HTTP **200** y un cuerpo HTML de 12019, 11299 y 10345 bytes, respectivamente. Las capturas muestran `HTTP 204 No Content` dentro de esa página: es el estado de la operación que presenta `BrowsableAPIRenderer`, no el código final de la respuesta HTML. En `navegador_registro.json`, `estado` y `respuesta` conservan el contenido mostrado; se añadieron `codigo_http`, `bytes_respuesta_http` y la referencia al log para distinguirlo del transporte real. No se modificaron las capturas ni el log original.
+
 ### Paso 8 — Cliente HTTP externo (comprobado)
 
-[tools/lab08_http_client.py](../tools/lab08_http_client.py) hizo **54 registros con 0 fallos**: [salida de consola](evidencias/lab08/cliente_http_salida.txt) y [peticiones y respuestas](evidencias/lab08/cliente_http.json).
+[tools/lab08_http_client.py](../tools/lab08_http_client.py) hizo **54 registros (44 peticiones HTTP y 10 verificaciones de contenido) con 0 fallos**: [salida de consola](evidencias/lab08/cliente_http_salida.txt) y [peticiones y respuestas](evidencias/lab08/cliente_http.json).
 
 - Exámenes: GET 200, POST 201 (id 5), GET 200, PUT 200, PATCH 200 y, al final, DELETE 204 sin cuerpo y GET 404.
 - Preguntas: GET 200, POST 201 (id 11, con 2 opciones), GET 200, PUT 200 (3 opciones nuevas), PATCH 200 (conserva las 3), DELETE 204 sin cuerpo y GET 404.
 - Opciones: GET 200, POST 201 de un distractor `is_correct: false` (id 50), GET 200, PUT 200, PATCH 200, DELETE 204 sin cuerpo y GET 404.
 
-Ambas formas de acceso dan los mismos códigos. Con sesión (navegador) y con token (cliente externo), GET da 200, POST 201, PUT/PATCH 200, DELETE 204 sin cuerpo y el GET del objeto eliminado, 404. Solo se borraron los registros creados en las pruebas: los 2 exámenes y 8 preguntas iniciales siguen igual.
+Ambas formas de acceso producen el mismo resultado sobre los datos: GET da 200, POST 201, PUT/PATCH 200 y el GET del objeto eliminado, 404. La diferencia es la representación del DELETE: el navegador recibe **200 con HTML** que muestra `204 No Content`, mientras el cliente JSON recibe **204 sin cuerpo**. Depende del formato de respuesta, no del método de autenticación. Solo se borraron los registros creados en las pruebas: los 2 exámenes y 8 preguntas iniciales siguen igual.
 
 ### Paso 9 — Errores (comprobado)
 
@@ -156,12 +160,28 @@ Al eliminar el examen de prueba, `?exam=5` devolvió una lista vacía: el borrad
 
 ### Paso 12 — Verificación
 
+Ejecución original del **18/10/2026**:
+
 - `python manage.py check`: sin problemas ([check.txt](evidencias/lab08/check.txt)).
 - `python manage.py test quiz.tests.test_api quiz.tests.test_lab08 quiz.tests.test_permissions quiz.tests.test_agent`: **65 pruebas, OK** ([pruebas_backend.txt](evidencias/lab08/pruebas_backend.txt)).
 - `git diff --check`: sin errores de espacios.
 - En el commit no hay tokens, contraseñas, `db.sqlite3`, `.venv` ni archivos temporales.
 
+#### Revisión local del 01/11/2026
+
+Se creó `.venv` y se instalaron las dependencias de `requirements.txt`, sin cambiar el Python global ni reiniciar la base de desarrollo. Con Python **3.14.7**, Django **6.1.2**, DRF **3.18.3**, drf-spectacular **0.30.0** y requests **2.34.2**:
+
+- `manage.py check`: sin problemas.
+- La misma selección de pruebas del backend con `--noinput`: **66 pruebas, OK**.
+- Se añadió `BrowsableApiTests.test_delete_returns_html_200_or_empty_json_204`: comprueba los tres recursos con sesión y CSRF, verifica HTTP 200 con HTML que muestra `204 No Content`, HTTP 204 sin cuerpo para JSON y GET posterior 404 en ambos casos.
+- `git diff --check`: sin errores de espacios.
+
+Los comandos y la salida real están en [revision_2026-11-01.txt](evidencias/lab08/revision_2026-11-01.txt). Esta revisión usa `23b753a` más los cambios locales de documentación y la nueva prueba. No vuelve a ejecutar ni cambia la fecha de las evidencias HTTP originales del 18/10/2026.
+
+### Publicación en GitHub
+
+El proyecto, el entregable y las evidencias originales están publicados en la rama `main`, commit [`23b753a`](https://github.com/leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB08/commit/23b753ad7a460bc5115a4030aeed2e46f744a7ec). La referencia remota se comprobó el **01/11/2026** con `git ls-remote --heads origin main`. Las correcciones de esta revisión se identifican por separado en el historial de la rama `main`; el hash anterior corresponde a la entrega original.
+
 ## Pendiente
 
-- Publicar en GitHub: Karim hará el push del commit.
 - Pendiente: Karim debe subir entregable/LAB08.md (o el formato solicitado por el docente) al campus virtual.

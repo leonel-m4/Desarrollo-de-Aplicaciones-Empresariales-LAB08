@@ -1,0 +1,78 @@
+Revisión local del LAB08: 01/11/2026 (hora de Perú)
+Base del proyecto: 23b753ad7a460bc5115a4030aeed2e46f744a7ec (main)
+Estado durante la verificación: base más cambios locales de documentación,
+aclaraciones del registro del navegador y una nueva prueba automatizada,
+todavía sin commit ni push en ese momento. La publicación posterior se consulta
+en el historial de Git.
+
+Entorno consultado: 2026-11-01T11:52:20-05:00
+Python: 3.14.7
+Django: 6.1.2
+djangorestframework: 3.18.3
+drf-spectacular: 0.30.0
+requests: 2.34.2
+
+Preparación ejecutada:
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+Resultado: dependencias instaladas correctamente en .venv (ignorado por Git).
+No se ejecutó seed_quiz sobre la base de desarrollo ni se reinició esa base.
+Las pruebas cargan sus propios datos únicamente en la base de pruebas.
+
+Comando:
+.\.venv\Scripts\python.exe manage.py check
+Salida:
+System check identified no issues (0 silenced).
+Código de salida: 0
+
+Comando:
+.\.venv\Scripts\python.exe manage.py test quiz.tests.test_api quiz.tests.test_lab08 quiz.tests.test_permissions quiz.tests.test_agent --noinput
+Salida:
+Creating test database for alias 'default'...
+..................................................................
+----------------------------------------------------------------------
+Ran 66 tests in 12.090s
+
+OK
+Destroying test database for alias 'default'...
+Found 66 test(s).
+System check identified no issues (0 silenced).
+Código de salida: 0
+
+Nueva prueba:
+BrowsableApiTests.test_delete_returns_html_200_or_empty_json_204
+Comprueba DELETE de opciones, preguntas y exámenes con sesión y CSRF:
+- Accept: text/html -> HTTP 200 con HTML que muestra 204 No Content.
+- Accept: application/json -> HTTP 204 sin cuerpo.
+- El GET posterior del recurso eliminado devuelve 404 en ambos formatos.
+Es una prueba automatizada con la base de pruebas, no una nueva pasada manual.
+
+Comando:
+.\.venv\Scripts\python.exe -m pip check
+Salida:
+No broken requirements found.
+Código de salida: 0
+
+Validación de documentación y evidencias:
+- Los datos originales de navegador_registro.json coinciden con 23b753a al excluir
+  los nuevos campos de aclaración.
+- Los códigos y tamaños de los 3 DELETE coinciden con el log del servidor.
+- Existen las 26 capturas y los 43 enlaces locales de los documentos revisados.
+
+Comando:
+git diff --check
+Resultado: sin errores de espacios. Git emitió avisos de conversión LF a CRLF
+para los archivos editados; no son fallos de la comprobación.
+Código de salida: 0
+
+Comando:
+git ls-remote --heads origin main
+Salida:
+23b753ad7a460bc5115a4030aeed2e46f744a7ec	refs/heads/main
+Código de salida: 0
+
+Las capturas, el log del servidor y los resultados HTTP originales corresponden
+al 18/10/2026 y no se han vuelto a generar. En navegador_registro.json se conservan
+los estados mostrados y se añaden los códigos HTTP reales de los DELETE según
+las líneas 26, 30 y 34 de servidor_runserver.log.
+La carga al campus virtual sigue pendiente de confirmación del integrante.

@@ -3,31 +3,36 @@
 Repositorio del **Laboratorio 8** de Desarrollo de Aplicaciones Empresariales (DAE):
 API de exámenes, preguntas y opciones con Django REST Framework.
 También contiene el laboratorio **extra** de contrato OpenAPI, cliente de consola
-y frontera de un agente de IA. Ese extra no es la parte pendiente de Karim.
+y frontera de un agente de IA. Ese extra no forma parte de los pasos 1–12 revisados aquí.
 
 La guía del laboratorio (con su rúbrica) está en el campus virtual; aquí está el código.
 
 ## Lab 8 — API REST de cuestionarios
 
-La implementación de los pasos **1–6 y 10** publica exámenes, preguntas y opciones
-en `/api/exams/`, `/api/questions/` y `/api/choices/`. Incluye validación, filtros,
-paginación y acceso desde la API navegable con inicio de sesión.
+Los pasos **1–11** están implementados y documentados. La API publica exámenes,
+preguntas y opciones en `/api/exams/`, `/api/questions/` y `/api/choices/`. Incluye
+validación, filtros, paginación y acceso desde la API navegable con inicio de sesión.
 
-Consulta [la configuración y las decisiones sobre relaciones](docs/api-cuestionarios.md).
-Las pruebas HTTP y la tabla para el campus quedan a cargo de **Karim**, según el
-bloque siguiente. La implementación tiene **65 pruebas backend aprobadas**.
+Consulta [la configuración y las decisiones sobre relaciones](docs/api-cuestionarios.md)
+y el [entregable con la tabla de la API y las evidencias HTTP](entregable/LAB08.md),
+preparado por **Karim**. La ejecución original registró **65 pruebas backend aprobadas**.
+La [revisión local del 01/11/2026](entregable/evidencias/lab08/revision_2026-11-01.txt)
+pasó **66 pruebas**, incluida una nueva comprobación de los DELETE en HTML y JSON.
+El proyecto y las evidencias están publicados en GitHub en el commit
+[`23b753a`](https://github.com/leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB08/commit/23b753ad7a460bc5115a4030aeed2e46f744a7ec).
+**Pendiente del paso 12:** confirmar la carga del entregable al campus virtual.
 
-## Parte de Karim — instrucciones para su IA
+## Parte de Karim — guía para repetir las comprobaciones
 
-**Pendiente:** pasos **7, 8, 9, 11 y 12**, más la comprobación del paso **10**.
-Son las pruebas por HTTP, las evidencias y el entregable; no hay que rehacer la API.
+**Completados:** pasos **7, 8, 9 y 11**, la comprobación del paso **10** y la
+publicación en GitHub del paso **12**. La entrega al campus sigue sin confirmarse.
 
-Karim debe abrir este repositorio en su asistente con acceso a terminal y pegar
-el siguiente bloque. Es una instrucción de trabajo, no un script que se ejecute
+El bloque siguiente se conserva como guía para reproducir las comprobaciones;
+no es una lista de tareas todavía pendientes ni un script que se ejecute
 por el simple hecho de abrir el README.
 
 ```text
-Actúa como el asistente de Karim y completa su parte del Laboratorio 8 en este
+Actúa como el asistente de Karim y reproduce las comprobaciones del Laboratorio 8 en
 repositorio: https://github.com/leonel-m4/Desarrollo-de-Aplicaciones-Empresariales-LAB08
 
 OBJETIVO Y LÍMITES
@@ -64,6 +69,9 @@ OBJETIVO Y LÍMITES
 - Usa Raw data con application/json cuando envíes opciones anidadas.
 - Anota método, URL, cuerpo enviado, código y respuesta reales; captura las
   pantallas relevantes sin mostrar contraseñas, cookies ni tokens.
+- Distingue el estado mostrado dentro de la página del código HTTP real de red.
+  En DELETE, la API navegable puede mostrar 204 dentro de una página HTML que
+  viaja con HTTP 200; la respuesta JSON sí es 204 sin cuerpo. Registra ambos.
 - Si no tienes herramientas para usar un navegador, deja esa verificación
   marcada como pendiente e indica qué debe hacer Karim. No inventes capturas
   ni presentes las pruebas del cliente externo como si fueran del navegador.
@@ -79,8 +87,8 @@ OBJETIVO Y LÍMITES
   adicional con is_correct=false; ese distractor sí puede eliminarse con 204.
 - No borres la única opción correcta ni dejes menos de dos: devuelve 400 por
   diseño. Para cambiar la correcta, reemplaza choices desde la pregunta.
-- Códigos esperados: GET 200, POST 201, PUT/PATCH 200, DELETE 204 sin cuerpo
-  y GET del objeto eliminado 404. Contrasta ambas formas de acceso.
+- Códigos esperados con respuesta JSON: GET 200, POST 201, PUT/PATCH 200,
+  DELETE 204 sin cuerpo y GET del objeto eliminado 404. Contrasta ambas formas de acceso.
 - Elimina únicamente los registros que hayas creado para estas comprobaciones.
 
 4. ERRORES Y PARÁMETROS: PASOS 9 Y COMPROBACIÓN DEL 10
@@ -142,8 +150,13 @@ OBJETIVO Y LÍMITES
 - [x] Cliente HTTP externo: operaciones y colección o script reproducible.
 - [x] Tres errores, filtros, búsqueda y paginación: resultados registrados.
 - [x] `entregable/LAB08.md`: tabla completa y enlaces a evidencias sanitizadas.
-- [ ] Cambios de Karim publicados en GitHub.
+- [x] Cambios de Karim publicados en GitHub: commit `23b753a`.
 - [ ] Entregable subido al campus por Karim.
+
+**Nota sobre DELETE:** el registro del servidor confirma HTTP 200 con HTML para
+la API navegable, aunque la página muestra `204 No Content`. El cliente JSON
+recibe HTTP 204 sin cuerpo. La diferencia se explica en el entregable; no es un
+fallo del borrado ni una diferencia de permisos.
 
 ## Laboratorio extra — cliente de consola y frontera del agente
 
